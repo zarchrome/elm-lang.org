@@ -91,8 +91,9 @@ literals =
 records =
   [ "{ x: 3, y: 4 }" =/= "{ x = 3, y = 4 }"
   , "point.x" =/= "point.x"
-  , "point.x = 42" =/= "{ point | x = 42 }"
-  ]
+  , (Code "point.x = 42", Message "Objects cannot be updated in place")
+  , "Object.assign({}, point, {x: 42})" =/= "{ point | x = 42 }"
+]
 
 
 functions =
